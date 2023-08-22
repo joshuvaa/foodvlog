@@ -1,0 +1,115 @@
+{% load static %}
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Sislaf</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'hr/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+
+<!-- Top Background Image Wrapper -->
+<div class="bgded overlay" style="background-image:url('{% static 'hr/images/demo/backgrounds/bg.JPG' %});">
+
+  <div class="wrapper row0">
+    <div id="topbar" class="hoc clear">
+      <div class="fl_left">
+
+
+
+      </div>
+      <div class="fl_right">
+
+        <ul class="nospace">
+
+          <li id="searchform">
+            <div>
+              <form action="{% url 'search' %}" method="get">
+                <fieldset>
+                  <legend>Quick Search:</legend>
+                  <input type="text" placeholder="Enter search term&hellip;">
+                  <button type="submit"><i class="fas fa-search"></i></button>
+                </fieldset>
+              </form>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear">
+      <div id="logo" class="fl_left">
+        <!-- ################################################################################################ -->
+        <h1><a href="/">Avodha Shopping</a></h1>
+        <!-- ################################################################################################ -->
+      </div>
+      <nav id="mainav" class="fl_right">
+        <!-- ################################################################################################ -->
+        <ul class="clear">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a class="drop" href="#">Filter</a>
+            <ul>
+              <li><a href="/">All</a></li>
+              <li><a href="chicken-recipes">Chicken Recipes</a></li>
+              <li><a href="fruite-recipes">Fruite Recipes</a></li>
+              <li><a href="vegetables-recipes">Vegetables Recipes</a></li>
+              <li><a href="fish-recipes">Fish Recipes</a></li>
+              <li><a href="beef-cutlet">Beef Recipes</a></li>
+            </ul>
+          </li>
+          <li><a class="drop" href="#">Dropdown</a>
+            <ul>
+              <li><a href="#">Level 2</a></li>
+              <li><a class="drop" href="#">Level 2 + Drop</a>
+                <ul>
+                  <li><a href="#">Level 3</a></li>
+                  <li><a href="#">Level 3</a></li>
+                  <li><a href="#">Level 3</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Level 2</a></li>
+            </ul>
+          </li>
+          <li><a href="{% url 'cart_details' %}">Cart</a></li>
+
+          <li><a href="#">Link Text</a></li>
+          <li><a href="#">Link Text</a></li>
+        </ul>
+
+      </nav>
+    </header>
+  </div>
+
+  <div id="pageintro" class="hoc clear">
+
+    <article>
+      <h3 class="heading">QUALITY FOOD ITEMS</h3>
+      <p> Register With Us and Have Quality Food Item At Your Door Step.</p>
+      <footer>
+
+      </footer>
+    </article>
+
+  </div>
+
+</div>
+<!-- End Top Background Image Wrapper -->
+
+
+
+
+<div class="bgded overlay row4" style="background-image:url('{% static 'hr/images/demo/backgrounds/05.png' %});">
+
+</div>
+
+<script src="{% static 'hr/layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'hr/layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'hr/layout/scripts/jquery.mobilemenu.js' %}"></script>
+</body>
+{% block content %}
+{% endblock %}
+</html>

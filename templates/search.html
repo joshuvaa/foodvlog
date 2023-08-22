@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Sislaf</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'hr/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+<style>
+  .bgded_overlay{
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+</head>
+<body id="top">
+
+
+ -->
+
+
+
+<div class="wrapper row3">
+  <main class="hoc container clear">
+
+
+    <section id="introblocks">
+      <ul class="nospace group btmspace-80">
+       ------------------------------------------------
+        {% for i in pr %}
+        <li class="one_third">
+          <figure><a class="imgover" href="{{i.get_url}}"><img src="{{i.img.url}}" alt="" style="height:400px:"></a>
+            <figcaption>
+              <h6 class="heading">{{i.name}}</h6>
+              <p>{{i.desc|truncatewords:20}}</p>
+              <br>
+              <p>price: {{i.price}} Rs</p>
+              <br>
+              <p>stock left:{{i.stock}}</p>
+            </figcaption>
+          </figure>
+        </li>
+        ---------------------------------------------------------
+{% endfor %}
+      </ul>
+    </section>
+
+    <hr class="btmspace-80">
+
+    <div class="clear"></div>
+
+
+
+<div class="bgded_overlay_row4" style="background-image:url('{% static 'hr/images/demo/backgrounds/bg.jpg' %});">
+
+</div>
+<script src="{% static 'hr/layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'hr/layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'hr/layout/scripts/jquery.mobilemenu.js' %}"></script>
+<style>
+  .bgded_overlay_row4{
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+  </main>
+</div>
+
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Sislaf</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'hr/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+<style>
+  .bgded_overlay{
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+</head>
+<body id="top">
+
+
+<div class="category">
+      {% for i in ct %}
+
+      <b style="color:white">
+<a href={{i.get_url}}>{{ i.name }}</a>
+      </b>
+      {% endfor %}
+    </div>
+<!-- Top Background Image Wrapper -->
+<div class="bgded_overlay" style="background-image: url('{% static 'hr/images/demo/backgrounds/bg.jpg' %}')">
+
+<div class="wrapper row0">
+    <div id="topbar" class="hoc clear">
+      <div class="fl_left">
+
+
+
+      </div>
+      <div class="fl_right">
+
+        <ul class="nospace">
+
+          <li id="searchform">
+            <div>
+              <form action="{% url 'search' %}" method="get">
+
+                <fieldset>
+                  <legend>Quick Search:</legend>
+                  <input type="text" placeholder="Enter search term" name="q">
+                  <button type="submit"><i class="fas fa-search"></i></button>
+                </fieldset>
+              </form>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+</div>
+  <div id="pageintro" class="hoc clear">
+
+    <article>
+      <h3 class="heading">QUALITY FOOD ITEMS</h3>
+      <p> Register With Us and Have Quality Food Item At Your Door Step.</p>
+      <footer>
+
+      </footer>
+    </article>
+
+  </div>
+
+</div>
+
+<!-- End Top Background Image Wrapper -->
+
+
+
+<div class="wrapper row3">
+  <main class="hoc container clear">
+
+
+    <section id="introblocks">
+  <ul class="nospace group btmspace-80">
+    {% for product in pr %}
+    <li class="one_third">
+      <figure>
+        <a class="imgover" href="{{ product.get_url }}">
+          <img src="{{ product.img.url }}" alt="{{ product.name }}" style="height: 400px;width: 400px;">
+        </a>
+        <figcaption>
+          <h6 class="heading">{{ product.name }}</h6>
+          <p>{{ product.desc|truncatewords:20 }}</p>
+          <br>
+          <p>price: {{ product.price }} Rs</p>
+          <br>
+          <p>stock left: {{ product.stock }}</p>
+        </figcaption>
+      </figure>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+<div class="pagination">
+  <span class="step-links">
+    {% if pr.has_previous %}
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page={{ pr.previous_page_number }}">previous</a>
+    {% endif %}
+
+    <span class="current-page">{{ pr.number }} of {{ pr.paginator.num_pages }}.</span>
+
+    {% if pr.has_next %}
+      <a href="?page={{ pr.next_page_number }}">next</a>
+      <a href="?page={{ pr.paginator.num_pages }}">last &raquo;</a>
+    {% endif %}
+  </span>
+</div>
+
+
+    <hr class="btmspace-80">
+
+    <div class="clear"></div>
+
+
+
+<div class="bgded_overlay_row4" style="background-image:url('{% static 'hr/images/demo/backgrounds/bg.jpg' %});">
+
+</div>
+<script src="{% static 'hr/layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'hr/layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'hr/layout/scripts/jquery.mobilemenu.js' %}"></script>
+<style>
+  .bgded_overlay_row4{
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+  </main>
+</div>
+
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="zxx">
+<!-- Head -->
+
+<head>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<title>Shopping Cart Flat Responsive Widget Template :: w3layouts</title>
+	<!-- Meta-Tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="Shopping Cart a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- //Meta-Tags -->
+	<!-- Index-Page-CSS -->
+	<link rel="stylesheet" href="{% static 'cr/css/style.css' %}" type="text/css" media="all">
+	<!-- //Custom-Stylesheet-Links -->
+	<!--fonts -->
+	<link href="//fonts.googleapis.com/css?family=Marcellus+SC" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+	<!-- //fonts -->
+
+	<!-- Font-Awesome-File-Links -->
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/font-awesome.css" type="text/css" media="all">
+	<!-- //Font-Awesome-File-Links -->
+	<style>
+        /* Plus and Minus Buttons */
+        .quantity {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100px; /* Adjust the width as needed */
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+
+        .quantity-input {
+            width: 40px; /* Adjust the width as needed */
+            text-align: center;
+        }
+
+        .minus-btn, .plus-btn {
+            font-size: 14px; /* Adjust the font size as needed */
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: #f1f1f1;
+            border: none;
+            outline: none;
+        }
+
+        .minus-btn:hover, .plus-btn:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<!-- //Head -->
+<!-- Body -->
+
+<body>
+{% for i in ci %}
+	<div class="banner">
+		<div class="banner-layer">
+			<h1 class="title-w3layouts">
+				<span class="fa fa-cart-arrow-down" aria-hidden="true"></span>shopping cart</h1>
+		</div>
+		<!-- cart's-Product-Display -->
+		<div class="wthreeproductdisplay">
+			<div class="container">
+				<div class="top-grid">
+					<div class="cart-grid" id="cart-1">
+
+						<div class="img">
+						<a href="{% url 'remove' i.prodt.id %}"><i class="fa fa-trash-o" style="font-size:20px"></i> </a> &nbsp;&nbsp;&nbsp;<a href="{{i.prodt.get_url}}"><img src="{{i.prodt.img.url}}" alt="{{i.prodt.name}}" style="height:70px; width:70px"></a>
+						</div>
+						<div class="description">
+							<span>{{i.prodt.name}}</span>
+							<span class="price">${{i.total}}<br><a href="{% url 'addcart' i.prodt.id %}">+</a>{{i.quan}}<a href="{% url 'cart_decrement' i.prodt.id %}">-</a> </span>
+							<span>ID: {{i.prodt.id}}</span>
+							<span>Price: {{i.prodt.price}}</span>
+							<span>Qty:{{i.qaun}}</span>
+						</div>
+
+						<div class="snipcart-details ">
+							<form action="cart/add/{{i.prodt.id}}" method="GET">
+								<input type="hidden" name="cmd" value="_cart">
+								<input type="hidden" name="add" value="1">
+								<input type="hidden" name="w3l_item" value="Striped Top ">
+								<input type="hidden" name="amount" value="25.00">
+								<input type="hidden" name="item_name" value="Product #001" />
+								<div class="quantity">
+									<button class="minus-btn" type="button">-</button>
+									<input type="text" name="quantity" value="1" class="quantity-input">
+									<button class="plus-btn" type="button">+</button>
+								</div>
+								<button type="submit" class="button w3l-cart" data-id="cart-1">add to cart</button>
+							</form>
+						</div>
+					</div>
+
+
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	<!-- //cart's-Product-Display -->
+		<div class="wthreecartaits wthreecartaits2 cart cart box_1">
+			<form action="#" method="post" class="last">
+				<input type="hidden" name="cmd" value="_cart" />
+				<input type="hidden" name="display" value="1" />
+				<button class="w3view-cart" type="submit" name="submit" value="">view cart
+					<span class="fa fa-cart-arrow-down" aria-hidden="true"></span>
+				</button>
+			</form>
+		</div>
+		<div class="copyright text-center">
+			<p>© 2017 Shopping Cart. All rights reserved | Design by
+				<a href="http://w3layouts.com">W3layouts</a>
+			</p>
+		</div>
+{% endfor %}
+	</div>
+
+	<script>
+    $(document).ready(function () {
+        $(".minus-btn").click(function (e) {
+            e.preventDefault();
+            var input = $(this).parent().find("input.quantity-input");
+            var value = parseInt(input.val());
+            if (value > 1) {
+                value = value - 1;
+                input.val(value);
+            }
+        });
+
+        $(".plus-btn").click(function (e) {
+            e.preventDefault();
+            var input = $(this).parent().find("input.quantity-input");
+            var value = parseInt(input.val());
+            value = value + 1;
+            input.val(value);
+        });
+    });
+</script>
+
+	<!-- //cart-js -->
+<div class="total-price">$</div>
+</body>
+<!-- //Body -->
+
+</html>
+{% endblock %}
